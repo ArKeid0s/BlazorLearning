@@ -18,7 +18,7 @@
     public int dice1 { get; set; } = 1;
     public int dice2 { get; set; } = 1;
 
-    public async Task RollDice()
+    public Task RollDice()
     {
         var random = new Random();
         dice1 = random.Next(1, 7);
@@ -32,5 +32,7 @@
         {
             isPair = false;
         }
+
+        return Task.CompletedTask;
     }
 }
