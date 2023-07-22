@@ -1,9 +1,36 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Dice Rolling App</PageTitle>
 
-<h1>Hello, world!</h1>
+<button class="btn btn-success" @onclick="RollDice" >Roll Dice</button>
 
-Welcome to your new app.
+<br /><br />
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<img src="img/dice@(dice1).jpg" />
+<img src="img/dice@(dice2).jpg" />
+
+@if(isPair) {
+    <h1>Wow a pair!</h1>
+}
+
+@code {
+    private bool isPair = false;
+    public int dice1 { get; set; } = 1;
+    public int dice2 { get; set; } = 1;
+
+    public async Task RollDice()
+    {
+        var random = new Random();
+        dice1 = random.Next(1, 7);
+        dice2 = random.Next(1, 7);
+
+        if (dice1 == dice2)
+        {
+            isPair = true;
+        }
+        else
+        {
+            isPair = false;
+        }
+    }
+}
